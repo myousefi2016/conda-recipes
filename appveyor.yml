@@ -49,7 +49,7 @@ environment:
       APP_CONDA_PY: "3.6.1"
       PACKAGE_TO_BUILD: "vtk"
 
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2008
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2008
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "64"
       CONDA_PY: "27"
