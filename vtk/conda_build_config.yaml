@@ -10,11 +10,9 @@ python:
   - 3.6 
 
 c_compiler:
-  - vs2008           # [win and py27]
   - vs2015           # [win and (py36 or py35)]
 
 cxx_compiler:
-  - vs2008           # [win and py27]
   - vs2015           # [win and (py36 or py35)]
 
 CONDA_BUILD_SYSROOT:

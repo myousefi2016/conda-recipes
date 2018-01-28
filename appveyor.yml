@@ -12,13 +12,15 @@ environment:
     CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\continuous-integration\\appveyor\\run_with_env.cmd"
 
   matrix:
-    - PYTHON: "C:\\Python27_64"
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      PYTHON_VERSION: "2.7"
-      PYTHON_ARCH: "64"
-      CONDA_PY: "27"
-      APP_CONDA_PY: "2.7.14"
-      PACKAGE_TO_BUILD: "itk"
+    # python 2.7 is disabled until we can get get a correct config for the opengl libraries on
+    # appveyor. 
+    # - PYTHON: "C:\\Python27_64"
+    #   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    #   PYTHON_VERSION: "2.7"
+    #   PYTHON_ARCH: "64"
+    #   CONDA_PY: "27"
+    #   APP_CONDA_PY: "2.7.14"
+    #   PACKAGE_TO_BUILD: "itk"
 
     - PYTHON: "C:\\Python36_64"
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
@@ -28,13 +30,13 @@ environment:
       APP_CONDA_PY: "3.6.1"
       PACKAGE_TO_BUILD: "itk"
 
-    - PYTHON: "C:\\Python27_64"
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      PYTHON_VERSION: "2.7"
-      PYTHON_ARCH: "64"
-      CONDA_PY: "27"
-      APP_CONDA_PY: "2.7.14"
-      PACKAGE_TO_BUILD: "vtk"
+    # - PYTHON: "C:\\Python27_64"
+    #   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    #   PYTHON_VERSION: "2.7"
+    #   PYTHON_ARCH: "64"
+    #   CONDA_PY: "27"
+    #   APP_CONDA_PY: "2.7.14"
+    #   PACKAGE_TO_BUILD: "vtk"
 
     - PYTHON: "C:\\Python35_64"
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
@@ -52,13 +54,13 @@ environment:
       APP_CONDA_PY: "3.6.1"
       PACKAGE_TO_BUILD: "vtk"
 
-    - PYTHON: "C:\\Python27_64" 
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      PYTHON_VERSION: "2.7"
-      PYTHON_ARCH: "64"
-      CONDA_PY: "27"
-      APP_CONDA_PY: "2.7.14"
-      PACKAGE_TO_BUILD: "vmtk"
+    # - PYTHON: "C:\\Python27_64" 
+    #   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    #   PYTHON_VERSION: "2.7"
+    #   PYTHON_ARCH: "64"
+    #   CONDA_PY: "27"
+    #   APP_CONDA_PY: "2.7.14"
+    #   PACKAGE_TO_BUILD: "vmtk"
 
     - PYTHON: "C:\\Python35_64"
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
