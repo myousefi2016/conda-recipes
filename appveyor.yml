@@ -114,4 +114,4 @@ on_success:
   # exit-status code is tricky in cmd.exe or powershell, so we're just using
   # a python script.
   - python continuous-integration\binstar-push.py
-  - "%CMD_IN_ENV% anaconda upload -t %BINSTAR_TOKEN% --package-type conda --user rlizzo %PYTHON%\\conda-bld\\win-64\\*"
+  # - "%CMD_IN_ENV% anaconda upload -t %BINSTAR_TOKEN% --package-type conda --user rlizzo %PYTHON%\\conda-bld\\win-64\\* >/dev/null 2>&1"
