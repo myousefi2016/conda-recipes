@@ -3,31 +3,28 @@
 language:
   - cpp
 
+
 matrix:
   include:
+    # Matrix expansion to run all subsequent builds with each OS.
+    - os: linux
+      dist: trusty
+      sudo: required
+    - os: osx
+      osx_image: xcode9.2
+      compiler: clang
 
-
+jobs:
+  include: 
     # Define stage itk as stage one. Must complete before vtk/vmtk run. 
     - stage: itk
-      - os: linux
-        dist: trusty
-        sudo: required
-      - os: osx
-        osx_image: xcode9.2
-        compiler: clang
       env: 
         - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=itk"
 
     # define stage vtk as stage two. Starts after stage one (itk) completes, and on finish
     # will launch stage two (vmtk). Builds six packages defined by env params and matrix expansion
-    # of OS types.
+    # of OS types (see start of matrix/include)
     - stage: vtk
-      - os: linux
-        dist: trusty
-        sudo: required
-      - os: osx
-        osx_image: xcode9.2
-        compiler: clang
       env: 
         - MATRIX_EVAL="TRPYTHON_VERSION=2.7.14 && PACKAGE=vtk"
       env: 
@@ -36,20 +33,19 @@ matrix:
         - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=vtk"
 
     # define stage vmtk as stage three. Starts after stage one and two (itk & vtk) completes. 
-    # Builds six packages defined by env params and matrix expansion of OS types.
+    # Builds six packages defined by env params and matrix expansion of OS types (see start of matrix/include)
     - stage: vmtk
-      - os: linux
-        dist: trusty
-        sudo: required
-      - os: osx
-        osx_image: xcode9.2
-        compiler: clang
       env: 
         - MATRIX_EVAL="TRPYTHON_VERSION=2.7.14 && PACKAGE=vmtk"
       env: 
         - MATRIX_EVAL="TRPYTHON_VERSION=3.5.1 && PACKAGE=vmtk"
       env: 
         - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=vmtk"
+
+stages:
+  - itk
+  - vtk
+  - vmtk
 
 env:
   global:
