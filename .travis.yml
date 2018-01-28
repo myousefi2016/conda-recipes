@@ -81,4 +81,4 @@ install:
   - source continuous-integration/travis/install.sh
 
 script:
-  - conda build --skip-existing --token $BINSTAR_TOKEN --user rlizzo --python $TRPYTHON_VERSION --no-copy-test-source-files $TRAVIS_BUILD_DIR/$PACKAGE/
+  - conda build --token $BINSTAR_TOKEN --user rlizzo --python $TRPYTHON_VERSION --no-copy-test-source-files $TRAVIS_BUILD_DIR/$PACKAGE/
