@@ -17,8 +17,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}    # [not linux]
+    - {{ compiler('cxx') }}  # [not linux]
     - cmake 
     - git
     - ninja 
