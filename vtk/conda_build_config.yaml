@@ -4,6 +4,9 @@ vtk:
 vtk_major_minor:
   - 8.1
 
+vtk_md5:
+  - "4fa5eadbc8723ba0b8d203f05376d932"
+
 python:
   - 2.7
   - 3.5

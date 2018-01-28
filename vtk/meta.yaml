@@ -4,7 +4,8 @@ package:
 
 source:
   fn: "VTK-{{ vtk }}.tar.gz"
-  url: http://www.vtk.org/files/release/{{ vtk_major_minor }}/VTK-{{ vtk }}.tar.gz
+  url: "http://www.vtk.org/files/release/{{ vtk_major_minor }}/VTK-{{ vtk }}.tar.gz"
+  md5: {{ vtk_md5 }}
 
 build:
   number: 1
