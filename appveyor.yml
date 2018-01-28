@@ -1,3 +1,6 @@
+skip_commits:
+  message: /\[apskip\]/
+
 environment:
   binstar_token:
     secure: uR5UssvsPxCrGeI01J852urZ6krq2RhUDMa5Um/B2O5rBCTzVr891bQXOJCMkV0l
