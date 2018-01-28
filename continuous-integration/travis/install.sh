@@ -7,23 +7,23 @@ bash miniconda.sh -b -p $CONDA_INSTALL_LOCN
 export PATH=${CONDA_INSTALL_LOCN}/bin:$PATH
 conda config --set always_yes true
 
-conda install --quiet -y conda conda-build anaconda-client
+conda install --quiet -y conda conda-build anaconda-client jinja2
 
 # set the ordering of additional channels
-conda config --prepend channels vmtk/label/dev
+conda config --prepend channels rlizzo
 
 # To ease debugging, list installed packages
 conda info -a
 conda list
-# - |
-#   Only upload if this is NOT a pull request.
-#   if [ "$TRAVIS_PULL_REQUEST" = "false" ] && \
-#      [ $TRAVIS_REPO_SLUG = "bccp/conda-channel-bccp" ] && \
-#      [ "$TRAVIS_BRANCH" == "master" ]; then
-#       UPLOAD="--user $DESTINATION_CONDA_CHANNEL --token $BINSTAR_TOKEN";
-#       conda config --set anaconda_upload true
-#       echo "Uploading enabled";
-#   else
-#       echo "Uplading disabled";
-#       UPLOAD="";
-#   fi
+
+# Only upload if this is NOT a pull request.
+if [ "$TRAVIS_PULL_REQUEST" = "false" ] && \
+    [ $TRAVIS_REPO_SLUG = "rlizzo/conda-recipes" ] && \
+    [ "$TRAVIS_BRANCH" == "master" ]; then
+    UPLOAD="--user $DESTINATION_CONDA_CHANNEL --token $BINSTAR_TOKEN";
+    conda config --set anaconda_upload true
+    echo "Uploading enabled";
+else
+    echo "Uplading disabled";
+    UPLOAD="";
+fi
