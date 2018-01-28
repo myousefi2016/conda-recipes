@@ -11,6 +11,7 @@ conda install --quiet -y conda conda-build anaconda-client jinja2
 
 # set the ordering of additional channels
 conda config --prepend channels rlizzo
+conda config --append channels conda-forge
 
 # To ease debugging, list installed packages
 conda info -a

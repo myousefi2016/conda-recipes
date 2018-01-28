@@ -31,6 +31,9 @@ source:
     git_url: https://github.com/vmtk/vmtk.git
 
 build:
+  features:
+    - vc9   # [win and py27]
+    - vc14  # [win and (py35 or py36)]  
   number: 1
   
 requirements:
