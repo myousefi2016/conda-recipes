@@ -3,6 +3,31 @@
 language:
   - cpp
 
+env:
+  global:
+    # destination conda channel 
+    - DESTINATION_CONDA_CHANNEL="rlizzo"
+    - CONDA_INSTALL_LOCN="${HOME}/miniconda"
+    # Secure variable defines the BINSTAR_TOKEN (anaconda cloud) API KEY for rlizzo repository. 
+    - secure: C6nx2DoIzYFpPYoLPNV1eKYhBQGZ77ZePXRWJVFtMQPaG2ViM2tOtcwUvQmE7CihhZsqGtIKtBsIeH8qVk4NDDKd5waaj2Jv8UP1PXv8mRgPoMhFnR5i5SWQ86f3P/8VyXDokHSabIwPryvozgjGknQlWkYryLiDOrZj87A10zWG10eHo1tn6pQfcCHvNlqcRQzs8bxtEm0k81X/IrI5o7fK3GIk7MILowwK9tBFNGkOcs8RIzHNzLkwfnMbI5uI0+vPlX4aNUbBDC/r8IxIkTPjxPcfEjnJdMpPH8PnWR59PbEy6NaFbMnuG5w+saOVCbGh8GV2mQQkImoDw7aunmw5B9C31hRIHmMoEEQHgr+K3KOthx0XyLNHVamxWu5ISWjipfY4pSmCoGDMiMr2fzpghgpExKwD8SH7iuCPdOVhcdk5elV6vJ89hcxh4VA8owC0HSNQ092Z74TylzcZfkJPRHC+H/0lEcQmSxSLkc/ZbnBpvOSYaMf+iOk5nVzcRAQ9kYw1sM8yrcZ/rETgAPCvijxuDNVgkF2GHGjfD9HzxmGyNAsFjRKAj5BO2yfMJ1q0TT2uFSkOifF0c2zcGJ73fJBreecfjce3hvmC71HFf/BeLNEuxNGKx77lvC52AgheK+JYWMhhcQa2U/+mLHtjoN99PXMdJsAQcrxy2mU=
+  
+  matrix:
+    # Define stage itk as stage one. Must complete before vtk/vmtk run. 
+    - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=itk"
+
+    # define stage vtk as stage two. Starts after stage one (itk) completes, and on finish
+    # will launch stage two (vmtk). Builds six packages defined by env params and matrix expansion
+    # of OS types (see start of matrix/include)
+    - MATRIX_EVAL="TRPYTHON_VERSION=2.7.14 && PACKAGE=vtk"
+    - MATRIX_EVAL="TRPYTHON_VERSION=3.5.1 && PACKAGE=vtk"
+    - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=vtk"
+
+    # define stage vmtk as stage three. Starts after stage one and two (itk & vtk) completes. 
+    # Builds six packages defined by env params and matrix expansion of OS types (see start of matrix/include)
+    - MATRIX_EVAL="TRPYTHON_VERSION=2.7.14 && PACKAGE=vmtk"
+    - MATRIX_EVAL="TRPYTHON_VERSION=3.5.1 && PACKAGE=vmtk"
+    - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=vmtk"
+
 matrix:
   include:
     # Matrix expansion to run all subsequent builds with each OS.
@@ -13,14 +38,6 @@ matrix:
       osx_image: xcode9.2
       compiler: clang
 
-env:
-  global:
-    # destination conda channel 
-    - DESTINATION_CONDA_CHANNEL="rlizzo"
-    - CONDA_INSTALL_LOCN="${HOME}/miniconda"
-    # Secure variable defines the BINSTAR_TOKEN (anaconda cloud) API KEY for rlizzo repository. 
-    - secure: C6nx2DoIzYFpPYoLPNV1eKYhBQGZ77ZePXRWJVFtMQPaG2ViM2tOtcwUvQmE7CihhZsqGtIKtBsIeH8qVk4NDDKd5waaj2Jv8UP1PXv8mRgPoMhFnR5i5SWQ86f3P/8VyXDokHSabIwPryvozgjGknQlWkYryLiDOrZj87A10zWG10eHo1tn6pQfcCHvNlqcRQzs8bxtEm0k81X/IrI5o7fK3GIk7MILowwK9tBFNGkOcs8RIzHNzLkwfnMbI5uI0+vPlX4aNUbBDC/r8IxIkTPjxPcfEjnJdMpPH8PnWR59PbEy6NaFbMnuG5w+saOVCbGh8GV2mQQkImoDw7aunmw5B9C31hRIHmMoEEQHgr+K3KOthx0XyLNHVamxWu5ISWjipfY4pSmCoGDMiMr2fzpghgpExKwD8SH7iuCPdOVhcdk5elV6vJ89hcxh4VA8owC0HSNQ092Z74TylzcZfkJPRHC+H/0lEcQmSxSLkc/ZbnBpvOSYaMf+iOk5nVzcRAQ9kYw1sM8yrcZ/rETgAPCvijxuDNVgkF2GHGjfD9HzxmGyNAsFjRKAj5BO2yfMJ1q0TT2uFSkOifF0c2zcGJ73fJBreecfjce3hvmC71HFf/BeLNEuxNGKx77lvC52AgheK+JYWMhhcQa2U/+mLHtjoN99PXMdJsAQcrxy2mU=
-
 before_install:
   - eval "${MATRIX_EVAL}"
 
@@ -29,28 +46,5 @@ before_install:
 install:
   - source continuous-integration/travis/install.sh
 
-jobs:
-  include: 
-    # Define stage itk as stage one. Must complete before vtk/vmtk run. 
-    - stage: itk
-      script: conda build --python 3.6.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/itk/
-
-    # define stage vtk as stage two. Starts after stage one (itk) completes, and on finish
-    # will launch stage two (vmtk). Builds six packages defined by env params and matrix expansion
-    # of OS types (see start of matrix/include)
-    - stage: vtk
-      script: conda build --python 2.7.14  --no-copy-test-source-files $TRAVIS_BUILD_DIR/vtk/
-      script: conda build --python 3.5.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/vtk/
-      script: conda build --python 3.6.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/vtk/
-
-    # define stage vmtk as stage three. Starts after stage one and two (itk & vtk) completes. 
-    # Builds six packages defined by env params and matrix expansion of OS types (see start of matrix/include)
-    - stage: vmtk
-      script: conda build --python 2.7.14  --no-copy-test-source-files $TRAVIS_BUILD_DIR/vmtk/
-      script: conda build --python 3.5.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/vmtk/
-      script: conda build --python 3.6.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/vmtk/
-
-stages:
-  - itk
-  - vtk
-  - vmtk
+script:
+  - conda build --python $TRPYTHON_VERSION --no-copy-test-source-files $TRAVIS_BUILD_DIR/$PACKAGE/
