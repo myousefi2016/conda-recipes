@@ -54,7 +54,7 @@ before_install:
 # Matrix is fully specified (for now) by os versions
 
 install:
-  - source condabuild/travis/install.sh
+  - source continuous-integration/travis/install.sh
 
 script:
   - conda build --python $TRPYTHON_VERSION --no-copy-test-source-files $TRAVIS_BUILD_DIR/$PACKAGE/
