@@ -3,7 +3,7 @@ package:
   version: "{{ itk }}"
 
 source:
-  git_rev: "v{{ itk }}"
+  git_rev: v{{ itk }}
   git_url: https://github.com/Kitware/ITK.git
 
 build:
@@ -11,17 +11,11 @@ build:
 
 requirements:
   build:
-    - "{{ compiler('c') }}"
-    - "{{ compiler('cxx') }}"
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - cmake 
     - git
     - ninja 
-
-test:
-  requires:
-    - python
-  imports:
-    - os
 
 about:
   home: https://itk.org/

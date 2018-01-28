@@ -99,7 +99,8 @@ test_script:
   #
   - "%CMD_IN_ENV% conda config --add channels rlizzo"
   - "%CMD_IN_ENV% conda config --show"
-  - "%CMD_IN_ENV% conda build --python %APP_CONDA_PY% --no-copy-test-source-files %PACKAGE_TO_BUILD%"
+  - "%CMD_IN_ENV% conda config --set anaconda_upload true"
+  - "%CMD_IN_ENV% conda build --token %BINSTAR_TOKEN% --user rlizzo --python %APP_CONDA_PY% --no-copy-test-source-files %PACKAGE_TO_BUILD%"
   # Move the conda package into the current directory, to register it
   # as an "artifact" for Appveyor. cmd.exe does't have good globbing, so
   # # we'll use a simple python script.
@@ -109,9 +110,9 @@ test_script:
 #   # Archive the generated conda package in the ci.appveyor.com build report.
 #   - path: '*.tar.bz2'
 
-on_success:
+# on_success:
   # Upload built binaries to binstar.org. The globbing and handling of the
   # exit-status code is tricky in cmd.exe or powershell, so we're just using
   # a python script.
-  - python continuous-integration\binstar-push.py
+  # - python continuous-integration\binstar-push.py
   # - "%CMD_IN_ENV% anaconda upload -t %BINSTAR_TOKEN% --package-type conda --user rlizzo %PYTHON%\\conda-bld\\win-64\\* >/dev/null 2>&1"

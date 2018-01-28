@@ -3,8 +3,8 @@ package:
   version: "{{ vtk }}"
 
 source:
-  fn: "VTK-{{ vtk }}.tar.gz"
-  url: "http://www.vtk.org/files/release/{{ vtk_major_minor }}/VTK-{{ vtk }}.tar.gz"
+  fn: VTK-{{ vtk }}.tar.gz
+  url: http://www.vtk.org/files/release/{{ vtk_major_minor }}/VTK-{{ vtk }}.tar.gz
 
 build:
   number: 1
@@ -13,9 +13,9 @@ build:
 
 requirements:
   build:
-    - "{{ compiler('c') }}"
-    - "{{ compiler('cxx') }}"
-    - python  "{{ python }}"
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - python  {{ python }}
     - pkgconfig             # [unix]
     - ninja
     - cmake >=3.6 
@@ -23,13 +23,13 @@ requirements:
     - setuptools            # [win]  
   host:
     - future
-    - python "{{ python }}"
+    - python {{ python }}
     - hdf5 1.8.18|1.8.18.*  # [unix]
     - zlib 1.2.*
     - setuptools            # [win]
 
   run:
-    - python  "{{ python }}"
+    - python  {{ python }}
     - future 
     - hdf5 1.8.18|1.8.18.*  # [unix]
     - numpy
@@ -38,7 +38,7 @@ requirements:
     
 test:
   requires:
-    - python "{{ python }}"
+    - python {{ python }}
     - numpy
     - pillow
     - future

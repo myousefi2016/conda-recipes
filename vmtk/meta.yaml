@@ -20,8 +20,8 @@
 
 
 # Jinja variables help maintain the recipe as you'll update the version only here.
-"{% set name = "vmtk" %}"
-"{% set version = "1.4" %}"
+{% set name = "vmtk" %}
+{% set version = "1.4" %}
 
 package:
   name: "{{ name|lower }}"
@@ -35,8 +35,8 @@ build:
   
 requirements:
   build:
-    - "{{ compiler('c') }}"
-    - "{{ compiler('cxx') }}"
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - pkgconfig              # [unix]
     - cmake 
     - git
@@ -44,20 +44,20 @@ requirements:
     - setuptools             # [win] 
     - menuinst               # [win]    
   host:
-    - python "{{ python }}"
+    - python {{ python }}
     - future
-    - vtk "{{ vtk }}"
-    - itk "{{ itk }}"
+    - vtk {{ vtk }}
+    - itk {{ itk }}
     - numpy
     - h5py
     - setuptools              # [win]
     - menuinst                # [win]
 
   run:
-    - python "{{ python }}"
+    - python {{ python }}
     - future 
-    - vtk "{{ vtk }}"
-    - itk "{{ itk }}"
+    - vtk {{ vtk }}
+    - itk {{ itk }}
     - numpy
     - h5py
 
