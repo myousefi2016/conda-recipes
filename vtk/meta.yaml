@@ -11,7 +11,7 @@ build:
   features:
     - vc14  # [win and (py35 or py36)]  
   skip_compile_pyc:
-    - "*/*.py"   # [win]
+    - "*/*.py"
   skip:
     - True  # [win and py27]  
 
