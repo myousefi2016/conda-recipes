@@ -5,7 +5,7 @@ language:
 
 env:
   global:
-    # destination conda channel 
+    # destination conda channel s
     - DESTINATION_CONDA_CHANNEL="rlizzo"
     - CONDA_INSTALL_LOCN="${HOME}/miniconda"
     # Secure variable defines the BINSTAR_TOKEN (anaconda cloud) API KEY for rlizzo repository. 
