@@ -5,7 +5,7 @@ cd build
 if [ "$(uname -s)" == "Linux" ]; then
   DYNAMIC_EXT="so"
   SCREEN_ARGS=(
-      "-DVTK_USE_X=OFF"
+      "-DVTK_USE_X=ON"
   )
 fi
 
