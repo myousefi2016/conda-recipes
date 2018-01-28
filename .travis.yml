@@ -3,7 +3,6 @@
 language:
   - cpp
 
-
 matrix:
   include:
     # Matrix expansion to run all subsequent builds with each OS.
@@ -13,39 +12,6 @@ matrix:
     - os: osx
       osx_image: xcode9.2
       compiler: clang
-
-jobs:
-  include: 
-    # Define stage itk as stage one. Must complete before vtk/vmtk run. 
-    - stage: itk
-      env: 
-        - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=itk"
-
-    # define stage vtk as stage two. Starts after stage one (itk) completes, and on finish
-    # will launch stage two (vmtk). Builds six packages defined by env params and matrix expansion
-    # of OS types (see start of matrix/include)
-    - stage: vtk
-      env: 
-        - MATRIX_EVAL="TRPYTHON_VERSION=2.7.14 && PACKAGE=vtk"
-      env: 
-        - MATRIX_EVAL="TRPYTHON_VERSION=3.5.1 && PACKAGE=vtk"
-      env: 
-        - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=vtk"
-
-    # define stage vmtk as stage three. Starts after stage one and two (itk & vtk) completes. 
-    # Builds six packages defined by env params and matrix expansion of OS types (see start of matrix/include)
-    - stage: vmtk
-      env: 
-        - MATRIX_EVAL="TRPYTHON_VERSION=2.7.14 && PACKAGE=vmtk"
-      env: 
-        - MATRIX_EVAL="TRPYTHON_VERSION=3.5.1 && PACKAGE=vmtk"
-      env: 
-        - MATRIX_EVAL="TRPYTHON_VERSION=3.6.1 && PACKAGE=vmtk"
-
-stages:
-  - itk
-  - vtk
-  - vmtk
 
 env:
   global:
@@ -63,5 +29,28 @@ before_install:
 install:
   - source continuous-integration/travis/install.sh
 
-script:
-  - conda build --python $TRPYTHON_VERSION --no-copy-test-source-files $TRAVIS_BUILD_DIR/$PACKAGE/
+jobs:
+  include: 
+    # Define stage itk as stage one. Must complete before vtk/vmtk run. 
+    - stage: itk
+      script: conda build --python 3.6.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/itk/
+
+    # define stage vtk as stage two. Starts after stage one (itk) completes, and on finish
+    # will launch stage two (vmtk). Builds six packages defined by env params and matrix expansion
+    # of OS types (see start of matrix/include)
+    - stage: vtk
+      script: conda build --python 2.7.14  --no-copy-test-source-files $TRAVIS_BUILD_DIR/vtk/
+      script: conda build --python 3.5.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/vtk/
+      script: conda build --python 3.6.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/vtk/
+
+    # define stage vmtk as stage three. Starts after stage one and two (itk & vtk) completes. 
+    # Builds six packages defined by env params and matrix expansion of OS types (see start of matrix/include)
+    - stage: vmtk
+      script: conda build --python 2.7.14  --no-copy-test-source-files $TRAVIS_BUILD_DIR/vmtk/
+      script: conda build --python 3.5.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/vmtk/
+      script: conda build --python 3.6.1 --no-copy-test-source-files $TRAVIS_BUILD_DIR/vmtk/
+
+stages:
+  - itk
+  - vtk
+  - vmtk
