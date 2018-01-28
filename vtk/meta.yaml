@@ -11,7 +11,6 @@ build:
   features:
     - vc9   # [win and py27]
     - vc14  # [win and (py35 or py36)]  
-    - mesalib    # [linux]
   skip_compile_pyc:
     - "*/*.py"   # [win]
 
@@ -25,14 +24,12 @@ requirements:
     - cmake >=3.6 
     - git
     - setuptools            # [win]  
-    - mesalib               # [linux]
   host:
     - future
     - python {{ python }}
     - hdf5 1.8.18|1.8.18.*  # [unix]
     - zlib 1.2.*
     - setuptools            # [win]
-    - mesalib               # [linux]
 
   run:
     - python  {{ python }}
@@ -41,7 +38,6 @@ requirements:
     - numpy
     - pillow
     - zlib 1.2.*
-    - mesalib               # [linux]
     
 test:
   requires:
