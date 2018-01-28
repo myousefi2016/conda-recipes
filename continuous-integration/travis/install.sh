@@ -20,7 +20,7 @@ conda list
 if [ "$TRAVIS_PULL_REQUEST" = "false" ] && \
     [ $TRAVIS_REPO_SLUG = "rlizzo/conda-recipes" ] && \
     [ "$TRAVIS_BRANCH" == "master" ]; then
-    UPLOAD="--user $DESTINATION_CONDA_CHANNEL --token $BINSTAR_TOKEN";
+    UPLOAD="--user $DESTINATION_CONDA_CHANNEL --t $BINSTAR_TOKEN";
     conda config --set anaconda_upload true
     echo "Uploading enabled";
 else
