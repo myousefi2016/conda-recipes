@@ -34,7 +34,7 @@ matrix:
       osx_image: xcode9.2
       compiler: clang
     
-    - env: PACKAGE=PACKAGE TRPYTHON_VERSION=TRPYTHON_VERSION
+    - env: PACKAGE=PACKAGE && TRPYTHON_VERSION=TRPYTHON_VERSION
 
 
 # Matrix is fully specified (for now) by os versions
