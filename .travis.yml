@@ -18,7 +18,13 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: MATRIX_EVAL="PACKAGE=itk && TRPYTHON_VERSION=3.6"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env: MATRIX_EVAL="PACKAGE=itk && TRPYTHON_VERSION=3.6 && CC=gcc-7 && CXX=g++-7"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
@@ -27,7 +33,13 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: MATRIX_EVAL="PACKAGE=vtk && TRPYTHON_VERSION=2.7"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env: MATRIX_EVAL="PACKAGE=vtk && TRPYTHON_VERSION=2.7 && CC=gcc-7 && CXX=g++-7"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
@@ -35,7 +47,13 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: MATRIX_EVAL="PACKAGE=vtk && TRPYTHON_VERSION=3.5"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env: MATRIX_EVAL="PACKAGE=vtk && TRPYTHON_VERSION=3.5 && CC=gcc-7 && CXX=g++-7"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
@@ -43,7 +61,13 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: MATRIX_EVAL="PACKAGE=vtk && TRPYTHON_VERSION=3.6"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env: MATRIX_EVAL="PACKAGE=vtk && TRPYTHON_VERSION=3.6 && CC=gcc-7 && CXX=g++-7"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
@@ -52,7 +76,13 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: MATRIX_EVAL="PACKAGE=vmtk && TRPYTHON_VERSION=2.7.14"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env: MATRIX_EVAL="PACKAGE=vmtk && TRPYTHON_VERSION=2.7.14 && CC=gcc-7 && CXX=g++-7"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
@@ -60,7 +90,13 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: MATRIX_EVAL="PACKAGE=vmtk && TRPYTHON_VERSION=3.5.1"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env: MATRIX_EVAL="PACKAGE=vmtk && TRPYTHON_VERSION=3.5.1 && CC=gcc-7 && CXX=g++-7"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
@@ -68,7 +104,13 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: MATRIX_EVAL="PACKAGE=vmtk && TRPYTHON_VERSION=3.6.1"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env: MATRIX_EVAL="PACKAGE=vmtk && TRPYTHON_VERSION=3.6.1 && CC=gcc-7 && CXX=g++-7"
     - os: osx
       osx_image: xcode9.2
       compiler: clang

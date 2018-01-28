@@ -32,6 +32,7 @@ requirements:
     - hdf5 1.8.18|1.8.18.*  # [unix]
     - zlib 1.2.*
     - setuptools            # [win]
+    - pkgconfig             # [unix]
 
   run:
     - python  {{ python }}
