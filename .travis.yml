@@ -18,62 +18,64 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: PACKAGE="itk" TRPYTHON_VERSION="3.6.1"
+      env: MATRIX_EVAL="PACKAGE=itk TRPYTHON_VERSION=3.6"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
-      env: PACKAGE="itk" TRPYTHON_VERSION="3.6.1"
+      env: MATRIX_EVAL="PACKAGE=itk TRPYTHON_VERSION=3.6"
 
     - os: linux
       dist: trusty
       sudo: required
-      env: PACKAGE="vtk" TRPYTHON_VERSION="2.7"
+      env: MATRIX_EVAL="PACKAGE=vtk TRPYTHON_VERSION=2.7"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
-      env: PACKAGE="vtk" TRPYTHON_VERSION="2.7"
+      env: MATRIX_EVAL="PACKAGE=vtk TRPYTHON_VERSION=2.7"
     - os: linux
       dist: trusty
       sudo: required
-      env: PACKAGE="vtk" TRPYTHON_VERSION="3.5"
+      env: MATRIX_EVAL="PACKAGE=vtk TRPYTHON_VERSION=3.5"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
-      env: PACKAGE="vtk" TRPYTHON_VERSION="3.5"
+      env: MATRIX_EVAL="PACKAGE=vtk TRPYTHON_VERSION=3.5"
     - os: linux
       dist: trusty
       sudo: required
-      env: PACKAGE="vtk" TRPYTHON_VERSION="3.6"
+      env: MATRIX_EVAL="PACKAGE=vtk TRPYTHON_VERSION=3.6"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
-      env: PACKAGE="vtk" TRPYTHON_VERSION="3.6"
+      env: MATRIX_EVAL="PACKAGE=vtk TRPYTHON_VERSION=3.6"
 
     - os: linux
       dist: trusty
       sudo: required
-      env: PACKAGE="vmtk" TRPYTHON_VERSION="2.7.14"
+      env: MATRIX_EVAL="PACKAGE=vmtk TRPYTHON_VERSION=2.7.14"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
-      env: PACKAGE="vmtk" TRPYTHON_VERSION="2.7.14"
+      env: MATRIX_EVAL="PACKAGE=vmtk TRPYTHON_VERSION=2.7.14"
     - os: linux
       dist: trusty
       sudo: required
-      env: PACKAGE="vmtk" TRPYTHON_VERSION="3.5.1"
+      env: MATRIX_EVAL="PACKAGE=vmtk TRPYTHON_VERSION=3.5.1"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
-      env: PACKAGE="vmtk" TRPYTHON_VERSION="3.5.1"
+      env: MATRIX_EVAL="PACKAGE=vmtk TRPYTHON_VERSION=3.5.1"
     - os: linux
       dist: trusty
       sudo: required
-      env: PACKAGE="vmtk" TRPYTHON_VERSION="3.6.1"
+      env: MATRIX_EVAL="PACKAGE=vmtk TRPYTHON_VERSION=3.6.1"
     - os: osx
       osx_image: xcode9.2
       compiler: clang
-      env: PACKAGE="vmtk" TRPYTHON_VERSION="3.6.1"
+      env: MATRIX_EVAL="PACKAGE=vmtk TRPYTHON_VERSION=3.6.1"
 
+before_install:
+  - eval "${MATRIX_EVAL}"
 
 install:
   - source continuous-integration/travis/install.sh
